@@ -1,0 +1,61 @@
+def APP_NAME = "ocidevops-pipeline"
+def branchName = env.BRANCH_NAME
+
+timestamps {
+    node {
+        stage('Download Source') { // Public REPO; no credentials required.
+            git branch: branchName, url: 'https://sibashisch@bitbucket.org/sibashisch/ocidevops.git'
+        }
+        
+        stage('Build Code') {
+            sh "pwd && ls"
+            withMaven(jdk: 'Jdk', maven: 'Maven') { // Requires plugin: Pipeline Maven Integration; also Global Tools are to be configured: Jdk, Maven
+                sh "mvn clean install -DskipTests"
+            }
+        }
+        
+        stage('Unit Testing') {
+            withMaven(jdk: 'Jdk', maven: 'Maven') { // Requires plugin: Pipeline Maven Integration; also Global Tools are to be configured: Jdk, Maven
+                sh "mvn test"
+            }
+        }
+        
+        stage('Check Artifact') { // Stages are not fixed, may be defined as per business needs
+            sh "cd target && ls && cd -"
+        }
+		
+		stage('SonarQube') {
+			// This step requires installing the pluggin and configurations as per: https://aspiresoftware.in/blog/intergrating-sonarqube-and-jenkins/
+			// An webhook crated on sonar server: http://{jenkins-url, e.g. 10.10.0.100:8080}/sonarqube-webhook/
+			// Also, project properties are to be added to $sonar_home/conf/sonar-scanner.properties
+            // sonar.projectKey=devopsOCI
+            // sonar.projectName=devopsOCI
+            // sonar.projectVersion=1.0
+            // sonar.sources=src/main/java/
+            // sonar.language=java
+            // sonar.java.binaries=target/classes/
+            // sonar.tests=src/test/java/
+			// sonar.junit.reportPaths=target/surefire-reports/
+			
+			scannerHome = tool 'Sonar'
+			withSonarQubeEnv('SonarQube') {
+				sh "${scannerHome}/bin/sonar-scanner"
+			}
+			retry(10) {
+				waitForQualityGate abortPipeline: true
+			}
+		}
+        
+        stage('Deploy') { // Requires the environment variable: TomcatUrlOCI and credential created with id: tomcat on OCI employer instance
+            if ('master' == branchName) {
+				echo "Deploying to Tomcat on: " + env.TomcatUrlOCI
+				deploy adapters: [tomcat8(url: env.TomcatUrlOCI, credentialsId: 'tomcat on OCI employer instance')], 
+                     war: '**/*.war',
+                     contextPath: 'ocidevops'
+			} else {
+				echo "Not deploying branch: " + branchName
+			}
+        }
+        
+    }
+}
