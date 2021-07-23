@@ -27,7 +27,7 @@ public class BusinessLogicTest {
 	@Test
 	public void addAllTest3() {
 		BusinessLogic businessLogic = new BusinessLogic();
-		assertEquals(5, businessLogic.addAll(3,1,2));
+		assertEquals(6, businessLogic.addAll(3,1,2));
 	}
 	
 }
