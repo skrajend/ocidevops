@@ -7,7 +7,7 @@
 	</head>
 	
 	<body>
-	    <h1>Hello from Senthil - Devops session!</h1>
+	    <h1>Hello from OCI !</h1>
 	    <h4>
 	    	This is a dummy project to demonstrate:
 	    	<ul>
