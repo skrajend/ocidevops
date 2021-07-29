@@ -16,5 +16,10 @@ public class BusinessLogicTest {
 	public void addAllTest1() {
 		BusinessLogic businessLogic = new BusinessLogic();
 		assertEquals(3, businessLogic.addAll(1,2));
-	}	
+	}
+	@Test
+	public void addAllTest1() {
+		BusinessLogic businessLogic = new BusinessLogic();
+		assertEquals(6, businessLogic.addAll(1,2,3));
+	}
 }
