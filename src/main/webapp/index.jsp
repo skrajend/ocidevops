@@ -21,19 +21,21 @@
 	    <form method="post">
 	    	<input type="number" name="val1" />
 	    	<input type="number" name="val2" />
+		<input type="number" name="val3" />
 	    	<input type="Submit" value = "Add"/>
 	    </form>
 	    <br />
 	    
 	    <% 
-	    	if (request.getParameter("val1") != null && request.getParameter("val2") != null) {
+	    	if (request.getParameter("val1") != null && request.getParameter("val2") != null && request.getParameter("val3") != null) {
 	    		int v1 = Integer.parseInt(request.getParameter("val1"));
 	    		int v2 = Integer.parseInt(request.getParameter("val2"));
+			int v3 = Integer.parseInt(request.getParameter("val2"));
 	    		
 	    		BusinessLogic logic = new BusinessLogic();
-	    		int sum = logic.addAll(v1, v2);
+	    		int sum = logic.addAll(v1, v2, v3);
 	    	
-	    		%><h3>Output of business logic: <%=v1%> +  <%=v2%> = <%=sum%></h3><%
+	    		%><h3>Output of business logic: <%=v1%> +  <%=v2%> + <%=v3%>= <%=sum%></h3><%
 	    	
 	    	} 
 	    %>
