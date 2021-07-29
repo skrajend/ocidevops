@@ -30,7 +30,7 @@
 	    	if (request.getParameter("val1") != null && request.getParameter("val2") != null && request.getParameter("val3") != null) {
 	    		int v1 = Integer.parseInt(request.getParameter("val1"));
 	    		int v2 = Integer.parseInt(request.getParameter("val2"));
-			int v3 = Integer.parseInt(request.getParameter("val2"));
+			int v3 = request.getParameter("val3");
 	    		
 	    		BusinessLogic logic = new BusinessLogic();
 	    		int sum = logic.addAll(v1, v2, v3);
