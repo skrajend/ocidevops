@@ -1,7 +1,8 @@
 <%@page import="ocidevops.businesslogic.BusinessLogic"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<html>
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
 	<head>
 	    <title>hello</title>
 	</head>
