@@ -27,7 +27,7 @@
 	    <br />
 	    
 	    <% 
-	    	if (request.getParameter("val1") != null && request.getParameter("val2") != null && request.getParameter("val3") != null) {
+	    	if (request.getParameter("val1") != null && request.getParameter("val2") != null != null) {
 	    		int v1 = Integer.parseInt(request.getParameter("val1"));
 	    		int v2 = Integer.parseInt(request.getParameter("val2"));
 	    		
