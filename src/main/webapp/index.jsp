@@ -15,7 +15,7 @@
 	    	<ul>
 	    		<li>Java application building using Maven</li>
 	    		<li>Running Junits using Maven</li>
-	    		<li>Automating the above using Jenkins Pipeline</li>
+	    		<li>Automating the above using Jenkins Pipeline from OCI</li>
 	    	</ul> 
 	    </h4>
 	    
