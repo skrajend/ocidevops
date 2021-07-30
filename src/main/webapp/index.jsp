@@ -1,14 +1,13 @@
 <%@page import="ocidevops.businesslogic.BusinessLogic"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html lang="en" xml:lang="en">
+<html>
 	<head>
 	    <title>hello</title>
 	</head>
 	
 	<body>
-	    <h1>Hello from OCI -DevOps!</h1>
+	    <h1>Hello from Sibashis!</h1>
 	    <h4>
 	    	This is a dummy project to demonstrate:
 	    	<ul>
@@ -27,7 +26,7 @@
 	    <br />
 	    
 	    <% 
-	    	if (request.getParameter("val1") != null && request.getParameter("val2") != null != null) {
+	    	if (request.getParameter("val1") != null && request.getParameter("val2") != null) {
 	    		int v1 = Integer.parseInt(request.getParameter("val1"));
 	    		int v2 = Integer.parseInt(request.getParameter("val2"));
 	    		
