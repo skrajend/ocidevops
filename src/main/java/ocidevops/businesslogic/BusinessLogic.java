@@ -8,6 +8,6 @@ public class BusinessLogic {
 			sum += arg;
 		}
 		
-		return 1;
+		return sum;
 	}
 }
